@@ -12,8 +12,10 @@ Shared [Renovate](https://docs.renovatebot.com/) presets for `shunichironomura` 
 }
 ```
 
-Repositories that pin GitHub Actions through `.github/workflows/actions.lock` also extend
-`github>shunichironomura/renovate-config:actions-lock`.
+The preset assumes GitHub Actions are pinned through `.github/workflows/actions.lock`
+(`gh actions-lock`), so it turns off inline digest pinning. A repository that has not adopted the
+lockfile yet adds `"helpers:pinGitHubActionDigestsToSemver"` after the preset in its own `extends`,
+and removes it when it adopts the lockfile.
 
 ## Policy (`default.json`)
 
@@ -35,5 +37,5 @@ GitHub's native automerge may merge before CI completes.
 ## Validation
 
 ```sh
-npx --yes --package renovate@latest -- renovate-config-validator --strict default.json actions-lock.json
+npx --yes --package renovate@latest -- renovate-config-validator --strict default.json
 ```
