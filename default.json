@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate preset: weekly grouped non-major updates with automerge, individual PRs for majors and 0.x minors",
+  "extends": [
+    "config:best-practices",
+    "helpers:pinGitHubActionDigestsToSemver",
+    ":enablePreCommit",
+    ":timezone(Asia/Tokyo)",
+    "schedule:weekly"
+  ],
+  "minimumReleaseAge": "7 days",
+  "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "description": "Group all non-major updates into one weekly PR and automerge it when CI passes",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "groupName": "non-major dependencies",
+      "groupSlug": "non-major",
+      "automerge": true
+    },
+    {
+      "description": "0.x minor updates may be breaking: keep them out of the automerged group",
+      "matchUpdateTypes": ["minor"],
+      "matchCurrentVersion": "/^v?0\\./",
+      "groupName": "0.x minor updates",
+      "groupSlug": "zerover-minor",
+      "automerge": false
+    },
+    {
+      "description": "Lock file maintenance refreshes already-published versions; no cooldown needed",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
+    },
+    {
+      "matchCategories": ["ci"],
+      "addLabels": ["ci"]
+    }
+  ]
+}
