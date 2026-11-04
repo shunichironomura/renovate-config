@@ -24,7 +24,8 @@ and removes it when it adopts the lockfile.
 | Security fixes | Immediate PR (Renovate's `vulnerabilityAlerts` ignores `schedule` and `minimumReleaseAge`). Requires Dependabot alerts on the repository |
 | Major | Individual PR, weekly, no automerge |
 | 0.x minor | Grouped PR, weekly, no automerge |
-| Other minor / patch / digest / pin | One grouped PR, weekly, automerged when CI passes |
+| Other minor / patch / pin | One grouped PR, weekly, automerged when CI passes |
+| Digest-only (tag unchanged, commit changed) | Separate grouped PR, weekly, automerged when CI passes |
 | Lock file maintenance | Weekly, automerged when CI passes |
 
 - Schedule: early Monday mornings (Asia/Tokyo)

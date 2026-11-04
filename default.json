@@ -22,9 +22,16 @@
     },
     {
       "description": "Group all non-major updates into one weekly PR and automerge it when CI passes",
-      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest"],
       "groupName": "non-major dependencies",
       "groupSlug": "non-major",
+      "automerge": true
+    },
+    {
+      "description": "Keep digest-only updates in their own group: a digest with no release timestamp stays pending under minimumReleaseAge and would hold back the non-major group",
+      "matchUpdateTypes": ["digest"],
+      "groupName": "digest updates",
+      "groupSlug": "digest",
       "automerge": true
     },
     {
