@@ -13,9 +13,7 @@ Shared [Renovate](https://docs.renovatebot.com/) presets for `shunichironomura` 
 ```
 
 The preset assumes GitHub Actions are pinned through `.github/workflows/actions.lock`
-(`gh actions-lock`), so it turns off inline digest pinning. A repository that has not adopted the
-lockfile yet adds `"helpers:pinGitHubActionDigestsToSemver"` after the preset in its own `extends`,
-and removes it when it adopts the lockfile.
+(`gh actions-lock`), so it turns off inline digest pinning.
 
 ## Policy (`default.json`)
 
