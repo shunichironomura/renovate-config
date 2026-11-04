@@ -8,7 +8,6 @@
     "schedule:weekly"
   ],
   "minimumReleaseAge": "7 days",
-  "platformAutomerge": false,
   "labels": ["dependencies"],
   "lockFileMaintenance": {
     "enabled": true,
@@ -22,10 +21,18 @@
     },
     {
       "description": "Group all non-major updates into one weekly PR and automerge it when CI passes",
-      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest"],
       "groupName": "non-major dependencies",
       "groupSlug": "non-major",
       "automerge": true
+    },
+    {
+      "description": "Keep digest-only updates in their own group: a digest with no release timestamp stays pending under minimumReleaseAge. Renovate merges this group itself so it waits for renovate/stability-days, which GitHub's native auto-merge ignores",
+      "matchUpdateTypes": ["digest"],
+      "groupName": "digest updates",
+      "groupSlug": "digest",
+      "automerge": true,
+      "platformAutomerge": false
     },
     {
       "description": "0.x minor updates may be breaking: keep them out of the automerged group",
