@@ -8,6 +8,7 @@
     "schedule:weekly"
   ],
   "minimumReleaseAge": "7 days",
+  "platformAutomerge": false,
   "labels": ["dependencies"],
   "lockFileMaintenance": {
     "enabled": true,
