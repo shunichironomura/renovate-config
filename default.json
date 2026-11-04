@@ -20,6 +20,12 @@
       "pinDigests": false
     },
     {
+      "description": "Override the 3-day npm age from security:minimumReleaseAgeNpm (in config:best-practices), keeping its exemptions for other update types",
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "minimumReleaseAge": "7 days"
+    },
+    {
       "description": "Group all non-major updates into one weekly PR and automerge it when CI passes",
       "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest"],
       "groupName": "non-major dependencies",
