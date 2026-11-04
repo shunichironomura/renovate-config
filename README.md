@@ -32,10 +32,12 @@ and removes it when it adopts the lockfile.
 - Cooldown: `minimumReleaseAge: "7 days"`; automerge waits for the `renovate/stability-days` check
 - pre-commit hooks are updated by Renovate (`:enablePreCommit`), not pre-commit.ci
 
-Renovate merges the PR itself (`platformAutomerge: false`) after every status check is green,
-including `renovate/stability-days`. GitHub's native auto-merge only waits for the checks that
-branch protection requires, so it would merge updates younger than `minimumReleaseAge` as soon as
-CI passes. Renovate merges on its own runs (usually hourly), so merging lags CI by up to an hour.
+Automerged PRs use GitHub's native auto-merge, so they merge as soon as the required checks pass.
+That is safe because the default `internalChecksFilter: "strict"` keeps updates younger than
+`minimumReleaseAge` out of PRs. GitHub's auto-merge only waits for required checks, not for
+`renovate/stability-days`. The digest group is the exception: a digest without a release
+timestamp can stay pending, so Renovate merges that group itself (`platformAutomerge: false`)
+after every check, including `renovate/stability-days`, is green.
 
 ## Validation
 
