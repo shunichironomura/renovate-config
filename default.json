@@ -41,6 +41,12 @@
       "platformAutomerge": false
     },
     {
+      "description": "Docker digests have no timestamp of their own: Renovate ages them by the tag's last push on Docker Hub, so every re-push of the tag restarts the cooldown. Skip the cooldown for them",
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["digest"],
+      "minimumReleaseAge": null
+    },
+    {
       "description": "0.x minor updates may be breaking: keep them out of the automerged group",
       "matchUpdateTypes": ["minor"],
       "matchCurrentVersion": "/^v?0\\./",
