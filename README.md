@@ -37,6 +37,10 @@ That is safe because the default `internalChecksFilter: "strict"` keeps updates 
 timestamp can stay pending, so Renovate merges that group itself (`platformAutomerge: false`)
 after every check, including `renovate/stability-days`, is green.
 
+Docker digest updates skip the cooldown (`minimumReleaseAge: null`). Renovate ages a Docker digest
+by the tag's last push on Docker Hub, so each re-push of a tag such as `postgres:17.11` would
+restart the 7 days and hold the update.
+
 ## Validation
 
 ```sh
